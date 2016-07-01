@@ -1,0 +1,21 @@
+.jumbotron {
+    margin-bottom: 0px;
+      background: url('./img/bottles2.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+/*    background: url('./img/bottles.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;*/
+    color: black;
+    /*background-position: center margin-bottom;*/
+    /*background-size: auto 100%;*/
+    margin-top: 50px;
+	/*outline: 1px solid black;*/
+}
+
+.underjumbo {
+  }
+
+
+
+
