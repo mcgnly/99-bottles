@@ -1,0 +1,43 @@
+{
+    "name": "99-bottles",
+    "version": "0.0.1",
+    "description": "an app to display how many bottles of beer are on the shelf",
+    "main": "dist/relayr-browser-sdk.min.js",
+    "scripts": {
+        "start": "node server.js",
+        "test": "NODE_ENV=test mocha --recursive --compilers js:babel-core/register -r mock-local-storage",
+        "cover": "node_modules/.bin/nyc --require babel-core/register node_modules/.bin/mocha ./test",
+        "test:watch": "npm run test -- -w",
+        "build:js": "webpack --config webpack.dev.config.js --progress --profile --colors",
+        "build:min:js": "NODE_ENV=production webpack --config webpack.prod.config.js --progress --profile --colors",
+        "build:min:js:watch": "NODE_ENV=production webpack --config webpack.prod.config.js --progress --profile --colors -w"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/mcgnly/99-bottles"
+    },
+    "author": "Relayr (https://github.com/mcgnly)",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/mcgnly/99-bottles/issues"
+    },
+    "homepage": "https://github.com/rmcgnly/99-bottles",
+    "devDependencies": {
+        "babel": "^6.5.2",
+        "babel-core": "^6.0.20",
+        "babel-eslint": "^4.1.3",
+        "babel-loader": "^6.0.1",
+        "babel-plugin-rewire": "^1.0.0-rc-2",
+        "babel-preset-es2015": "^6.9.0",
+        "babel-preset-react": "^6.0.15",
+        "babel-preset-stage-0": "^6.0.15",
+        "es6-promise": "^3.0.2",
+        "eslint": "^1.10.3",
+        "eslint-plugin-react": "^3.6.2",
+        "mqtt": "^1.12.0",
+
+        "webpack": "^1.13.1",
+        "webpack-dev-server": "^1.12.1",
+        "webpack-node-externals": "^1.2.0"
+    }
+}

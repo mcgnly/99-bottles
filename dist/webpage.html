@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> 
+</head>
+
+
+  <body>
+
+    <!-- current high score block -->
+    <div  class="text-center">
+	  <div class="jumbotron">
+      	<div class="container">
+          <br>
+        	<h1>Your Score</h1>
+          <!-- this displays the data from the sensor, scaled up to 10 and rounded down to one decimal -->
+        	<h1 class="high-score">__</h1>
+          <!-- line breaks for prettyness -->
+        	<br>
+          <br>
+          <br>
+      	</div>
+
+      <!-- name input box -->
+        <form>
+          <div class="form-group">
+            <textarea class="form-control status-box" rows="1" placeholder="Enter your name here"></textarea>
+          </div>
+        </form>
+
+      <!-- button to append the name and score to the list -->
+      <div class="button-group">
+        <a href="#" class="btn btn-info" id = "save-button">save</a>
+      </div>
+          <br>
+          <br>
+          <br>
+            <!-- button to append the name and score to the list -->
+      <div class="button-group">
+        <a href="#" class="btn btn-info" id = "reset-button">Reset</a>
+      </div>
+<!-- end of jumbotron -->
+</div>
+
+
+
+<!-- previous names and scores, displayed in descending order -->
+    <div class="leaderboard">
+	  <div class="container">
+		<div class="row">
+
+      <!-- fill in space on the sides -->
+      <div class="col-md-4"></div>
+
+      <!-- names and scores, descending order -->
+	  	<div class="col-md-4">
+			   <h3>Rankings:</h3>
+          <ol class ="names-scores">
+          </ol>  
+        </div>
+
+      <!-- fill in the rest of the space -->
+      <div class="col-md-4"></div>
+
+		</div>
+    </div>
+	  </div>
+
+<!-- button to append the name and score to the list  -->
+    <div class ="punch">  
+      <div class="button-group">
+        <a href="#" class="btn btn-primary" id ="punch-button">punch!</a>
+      </div>
+    </div>
+
+  <br>
+  <br>
+  <br>
+  <!-- photo credit -->
+  <p>Adapted from original image by <a href="https://www.flickr.com/photos/53924071@N06/6060114798/">Snow0810</a>. 
+      (CC BY-SA 2.0)</p> 
+
+  <!-- finally at the end, load the scripts -->
+  <!-- this is the file that holds your sensitive data -->
+  <!-- // <script src = "api-keys.js"></script> -->
+  <!-- install jquery and point to it here: -->
+<script   src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
+
+TODO get the 
+  <script src="../dist/99-bottles.js"></script>
+
+</body>
+</html>
