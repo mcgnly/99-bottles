@@ -11,12 +11,12 @@ let weight;
 //define beer attributes
 let beer1 = {
     brand: "Tannenzapfle",
-    grPer: 2
+    grPer: 7
 }
 
 let beer2 = {
     brand: "Franziskaner",
-    grPer: 3
+    grPer: 12
 }
 
 
@@ -24,7 +24,7 @@ let beer2 = {
 RELAYR.init({
     // this comes from the api key page on the dashboard
     //it is important that these be called exactly  "redirectURI" and "id" 
-    id: "yourIdHere",
+    id: "1f1c57ee-0b3d-4ecd-9cce-df45ead579f3",
     // this identifies my website as a 'trusted user' basically- it expects me to show up and ask for access to stuff
     redirectURI: "http://localhost:3000/dist/webpage.html"
 });
@@ -35,7 +35,7 @@ RELAYR.authorize().then((currentUser) => {
 
     //set up the device instance
     let scale = new device({
-        id: "yourDeviceIdHere"
+        id: "2996ef5d-a175-4e35-af6d-ba2adac454d5"
     }, {
         ajax: currentUser.ajax
     });
@@ -43,10 +43,12 @@ RELAYR.authorize().then((currentUser) => {
 
     //     // figure out which beer to use
     scale.getReadings().then((response) => {
+        console.log("units", response.readings[3]);
+        console.log("name", response.readings[0]);
 
         //readings[0] is the rfid, [1] is ths weight
         //figure out which beer we're working with
-        if (response.readings[1].value === "abcdefg") {
+        if (response.readings[0].value === "Bugs") {
             whichBeer = beer1;
         } else {
             whichBeer = beer2;
@@ -56,10 +58,24 @@ RELAYR.authorize().then((currentUser) => {
         $(".beer-type").text(whichBeer.brand);
 
         // calibrates scale to a beer type
-        let scalingFactor = whichBeer.grPer;
-        let bottleCount = Math.floor((response.readings[0].value) / scalingFactor);
+        // let scalingFactor = whichBeer.grPer;
+        // let boxTare = 37;
+
+        scale.connect().then((connection) => {            
+            connection.on('data', (data) => {
+                console.log(data.readings[0].meaning);
+                if (data.readings[0].meaning === "units") {
+                    let bottleCount = data.readings[0].value;
+                    $(".beers-left").text(bottleCount);
+                }
+            });
+        });
+        // let bottleCount = response.readings[2].value
+        // Math.floor(((response.readings[1].value) - boxTare) / scalingFactor);
+        // if (bottleCount < 0) {
+        //     bottleCount = 0;
+        // }
         //inserts into html
-        $(".beers-left").text(bottleCount);
 
     }).catch((err) => {
         //informs you if something went wrong
