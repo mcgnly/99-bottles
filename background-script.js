@@ -63,8 +63,9 @@ RELAYR.authorize().then((currentUser) => {
 
         scale.connect().then((connection) => {            
             connection.on('data', (data) => {
-                console.log(data.readings[0].meaning);
-                if (data.readings[0].meaning === "units") {
+                if (data.readings[0].meaning === "weight") {
+
+                    console.log(data.readings[0].value);
                     let bottleCount = data.readings[0].value;
                     $(".beers-left").text(bottleCount);
                 }
