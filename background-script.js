@@ -9,15 +9,15 @@ const RELAYR = relayrSDK;
 let whichBeer;
 let weight;
 //define beer attributes
-let beer1 = {
-    brand: "Tannenzapfle",
-    grPer: 7
-}
+// let beer1 = {
+//     brand: "Tannenzapfle",
+//     grPer: 7
+// }
 
-let beer2 = {
-    brand: "Franziskaner",
-    grPer: 12
-}
+// let beer2 = {
+//     brand: "Franziskaner",
+//     grPer: 12
+// }
 
 
 //init gives the api enough information to link this code to a specific project on the relayr cloud
@@ -43,19 +43,17 @@ RELAYR.authorize().then((currentUser) => {
 
     //     // figure out which beer to use
     scale.getReadings().then((response) => {
-        console.log("units", response.readings[3]);
-        console.log("name", response.readings[0]);
+        // console.log("units", response.readings[3]);
+        // console.log("name", response.readings[0]);
 
-        //readings[0] is the rfid, [1] is ths weight
-        //figure out which beer we're working with
-        if (response.readings[0].value === "Bugs") {
-            whichBeer = beer1;
-        } else {
-            whichBeer = beer2;
-        }
+        // //readings[0] is the rfid, [1] is ths weight
+        // //figure out which beer we're working with
+        // if (response.readings[0].value === "Bugs") {
+        //     whichBeer = beer1;
+        // } else {
+        //     whichBeer = beer2;
+        // }
 
-        //inserts into html
-        $(".beer-type").text(whichBeer.brand);
 
         // calibrates scale to a beer type
         // let scalingFactor = whichBeer.grPer;
@@ -63,8 +61,20 @@ RELAYR.authorize().then((currentUser) => {
 
         scale.connect().then((connection) => {            
             connection.on('data', (data) => {
-                if (data.readings[0].meaning === "weight") {
+                if (data.readings[0].meaning === "name") {
+                    console.log(data.readings[0].value);
+                    let realName = data.readings[0].value;
+                    let brand;
+                    if (realName === "Bugs") {
+                        brand = "Tannenzapfle";
+                    } else {
+                        brand = "Franziskaner";
+                    }
+                    //inserts into html
+                    $(".beer-type").text(brand);
+                }
 
+                if (data.readings[0].meaning === "units") {
                     console.log(data.readings[0].value);
                     let bottleCount = data.readings[0].value;
                     $(".beers-left").text(bottleCount);
